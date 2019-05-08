@@ -61,13 +61,13 @@
                     <asp:BoundField DataField="Naam" HeaderText="Naam">
                     <ItemStyle Width="150px" />
                     </asp:BoundField>
-                    <asp:BoundField HeaderText="Aantal">
+                    <asp:BoundField HeaderText="Aantal" DataField="Aantal">
                     <ItemStyle Width="50px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="Prijs" HeaderText="Prijs">
                     <ItemStyle Width="100px" />
                     </asp:BoundField>
-                    <asp:BoundField HeaderText="Totaal" />
+                    <asp:BoundField HeaderText="Totaal" DataField="Totaal" />
                 </Columns>
             </asp:GridView>
         </div>

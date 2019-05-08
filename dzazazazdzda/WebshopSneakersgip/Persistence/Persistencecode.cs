@@ -12,7 +12,7 @@ namespace WebshopSneakersgip.Persistence
         string connstr = "server=localhost; user id=root; password=Test123; database=dbsneakers";
 
         //Persistence code om een product met bijhorende informatie op te halen.
-        public List<Product> LoadData()
+        public List<Product> LoadProductenData()
         {
             //Aanmaken van een connectie en deze ook openen.
             MySqlConnection conn = new MySqlConnection(connstr); 
@@ -71,11 +71,38 @@ namespace WebshopSneakersgip.Persistence
             conn.Close();
         }
 
+        public List<Klant> LoadKlantData(int KlantID)
+        {
+            //Aanmaken van een connectie en deze ook openen.
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+
+            //Benoemen van de query en deze ook uitvoeren.
+            string qry = "SELECT * FROM tblKlanten WHERE KlantID=" + KlantID;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+
+            //Lijst aanmaken en doorsturen naar de Business laag.
+            List<Klant> lijst = new List<Klant>();
+            while (dtr.Read())
+            {
+                Klant klant = new Klant();         
+                klant.Klantnaam = dtr["Naam"].ToString();
+                klant.Adres = dtr["Adres"].ToString();
+                klant.Postcode = Convert.ToInt32(dtr["Postcode"]);
+                klant.Gemeente = dtr["Gemeente"].ToString();
+
+                lijst.Add(klant);
+            }
+            conn.Close();
+            return lijst;
+        }
+
         public List<ProductenInWinkelmand> LoadFromProductenInWinkelmand(int KlantID)
         {
             MySqlConnection conn = new MySqlConnection(connstr);
-            conn.Close();
-            string qry = "SELECT Foto, ProductID, Naam, Aantal, Prijs from tblProducten INNER JOIN tblWinkelmand ON tblProducten.ProductID = tblWinkelmand.ProductID where KlantID=" + KlantID; 
+            conn.Open();
+            string qry = "SELECT tblproducten.ProductID, Foto, Naam, Aantal, Prijs FROM tblProducten INNER JOIN tblWinkelmand ON tblProducten.ProductID = tblWinkelmand.ProductID WHERE KlantID=" + KlantID; 
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
             List<ProductenInWinkelmand> Lijst = new List<ProductenInWinkelmand>();

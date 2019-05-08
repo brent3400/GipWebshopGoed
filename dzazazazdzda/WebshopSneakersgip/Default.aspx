@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="btnOk" runat="server" Text="Bekijk de inhoud van het winkelmandje..." Width="794px" />
+                        <asp:Button ID="btnOk" runat="server" Text="Bekijk de inhoud van het winkelmandje..." Width="794px" OnClick="btnOk_Click" />
                     </td>
                 </tr>
                 <tr>

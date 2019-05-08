@@ -16,7 +16,7 @@ namespace WebshopSneakersgip
         {
             Session["KlantID"] = 1;
 
-            gvCatalogus.DataSource = _cont.LoadData();
+            gvCatalogus.DataSource = _cont.LoadProductenData();
             gvCatalogus.DataBind();
 
             int aantal = Convert.ToInt32(gvCatalogus.Rows.Count - 1);
@@ -38,6 +38,11 @@ namespace WebshopSneakersgip
             Session["Verkoopprijs"] = gvCatalogus.SelectedRow.Cells[3].Text;
             Session["Voorraad"] = gvCatalogus.SelectedRow.Cells[4].Text;
             Response.Redirect("Toevoegen.aspx");
+        }
+
+        protected void btnOk_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Winkelmandje.aspx");
         }
     }
 }

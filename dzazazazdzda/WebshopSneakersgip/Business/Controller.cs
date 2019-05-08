@@ -10,9 +10,9 @@ namespace WebshopSneakersgip.Business
     {
         Persistencecode _pers = new Persistencecode();
 
-        public List<Product> LoadData()
+        public List<Product> LoadProductenData()
         {
-            return _pers.LoadData();
+            return _pers.LoadProductenData();
         }
         
         public void UpdateVoorraad(int pid, int _a, int _v)
@@ -30,6 +30,11 @@ namespace WebshopSneakersgip.Business
         public List<ProductenInWinkelmand> LoadFromProductenInWinkelmand(int KlantID)
         {
             return _pers.LoadFromProductenInWinkelmand(KlantID);
+        }
+
+        public List<Klant> LoadFromKlanten(int KlantID)
+        {
+            return _pers.LoadKlantData(KlantID);
         }
     }
 }

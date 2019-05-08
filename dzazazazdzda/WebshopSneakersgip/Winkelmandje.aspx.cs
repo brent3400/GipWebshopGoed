@@ -13,7 +13,12 @@ namespace WebshopSneakersgip
         Controller _cont = new Controller();
         protected void Page_Load(object sender, EventArgs e)
         {
-            gvWinkelmand.DataSource = _cont.LoadFromProducten(Convert.ToInt32(Session["ProductID"]));
+            lblKlantID.Text = Session["KlantID"].ToString();
+
+
+            _cont.LoadFromKlanten(Convert.ToInt32(Session["KlantID"]))
+
+            gvWinkelmand.DataSource = _cont.LoadFromProductenInWinkelmand(Convert.ToInt32(Session["KlantID"]));
             gvWinkelmand.DataBind();
         }
     }
