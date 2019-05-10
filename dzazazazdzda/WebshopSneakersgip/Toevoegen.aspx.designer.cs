@@ -67,6 +67,15 @@ namespace WebshopSneakersgip {
         protected global::System.Web.UI.WebControls.Label lblVoorraad;
         
         /// <summary>
+        /// lblText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblText;
+        
+        /// <summary>
         /// txtAantal control.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,23 @@ namespace WebshopSneakersgip {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOk;
+        
+        /// <summary>
+        /// lblFouttext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFouttext;
+        
+        /// <summary>
+        /// btnCatalogus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCatalogus;
     }
 }

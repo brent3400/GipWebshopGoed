@@ -15,6 +15,16 @@
         .auto-style3 {
             width: 100%;
         }
+        .auto-style4 {
+            width: 500px;
+            height: 34px;
+        }
+        .auto-style5 {
+            height: 34px;
+        }
+        .auto-style6 {
+            width: 600px;
+        }
     </style>
 </head>
 <body>
@@ -56,12 +66,26 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">Aantal te bestellen exemplaren van dit item:&nbsp;
+                    <td class="auto-style4">&nbsp;
+                        <asp:Label ID="lblText" runat="server" Text="Aantal te bestellen exemplaren van dit item:"></asp:Label>
                         <asp:TextBox ID="txtAantal" runat="server" Width="90px"></asp:TextBox>
 &nbsp;
-                        <asp:Button ID="btnOk" runat="server" Text="Button" OnClick="Button1_Click" />
+                        <asp:Button ID="btnOk" runat="server" Text="Toevoegen..." OnClick="Button1_Click" />
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style5"></td>
+                </tr>
+            </table>
+            <br />
+            <table class="auto-style6">
+                <tr>
+                    <td>
+                        <asp:Label ID="lblFouttext" runat="server" ForeColor="Maroon" Text="Dit product zit al in het winkelmandje. Als u het aantal wil wijzigen, verwijder het dan uit het winkelmandje en voeg het correcte aantal toe." Visible="False"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Button ID="btnCatalogus" runat="server" OnClick="btnCatalogus_Click" Text="Terug naar catalogus..." Visible="False" />
+                    </td>
                 </tr>
             </table>
         </div>

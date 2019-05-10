@@ -12,6 +12,15 @@
         .auto-style2 {
             width: 169px;
         }
+        .auto-style3 {
+            width: 800px;
+        }
+        .auto-style4 {
+            text-align: right;
+        }
+        .auto-style5 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -35,6 +44,8 @@
                     <td class="auto-style2">Adres:</td>
                     <td>
                         <asp:Label ID="lblAdres" runat="server"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblPcGe" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -45,7 +56,7 @@
                 </tr>
             </table>
             <br />
-            <asp:GridView ID="gvWinkelmand" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="gvWinkelmand" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvWinkelmand_SelectedIndexChanged">
                 <Columns>
                     <asp:CommandField ButtonType="Image" SelectImageUrl="~/Files/btnDelete.jpg" ShowSelectButton="True">
                     <ControlStyle Height="45px" Width="45px" />
@@ -70,6 +81,38 @@
                     <asp:BoundField HeaderText="Totaal" DataField="Totaal" />
                 </Columns>
             </asp:GridView>
+            <br />
+            <table class="auto-style3">
+                <tr>
+                    <td class="auto-style4">Totaal excl. BTW:</td>
+                    <td class="auto-style4">
+                        <asp:Label ID="lblExclBTW" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">BTW:</td>
+                    <td class="auto-style4">
+                        <asp:Label ID="lblBTW" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">Totaal incl. BTW:</td>
+                    <td class="auto-style4">
+                        <asp:Label ID="lblInclBTW" runat="server"></asp:Label>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <table class="auto-style3">
+                <tr>
+                    <td class="auto-style5">
+                        <asp:Button ID="btnBestellen" runat="server" Text="Bestellen..." />
+                    </td>
+                    <td class="auto-style5">
+                        <asp:Button ID="btnCatalogus" runat="server" OnClick="btnCatalogus_Click" Text="Terug naar catalogus..." />
+                    </td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

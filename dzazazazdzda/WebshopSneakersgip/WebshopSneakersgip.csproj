@@ -75,6 +75,7 @@
     <Content Include="Files\NikeDeluxe.jpg" />
     <Content Include="Files\NikeMax2.jpg" />
     <Content Include="Files\NikeZoom.jpg" />
+    <Content Include="MandjeLeeg.aspx" />
     <Content Include="Toevoegen.aspx" />
     <Content Include="Web.config" />
     <Content Include="Winkelmandje.aspx" />
@@ -84,6 +85,7 @@
     <Compile Include="Business\Klant.cs" />
     <Compile Include="Business\Product.cs" />
     <Compile Include="Business\ProductenInWinkelmand.cs" />
+    <Compile Include="Business\Totalen.cs" />
     <Compile Include="Business\Winkelmand.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -91,6 +93,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MandjeLeeg.aspx.cs">
+      <DependentUpon>MandjeLeeg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MandjeLeeg.aspx.designer.cs">
+      <DependentUpon>MandjeLeeg.aspx</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Persistencecode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

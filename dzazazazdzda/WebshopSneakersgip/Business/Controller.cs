@@ -15,9 +15,19 @@ namespace WebshopSneakersgip.Business
             return _pers.LoadProductenData();
         }
         
-        public void UpdateVoorraad(int pid, int _a, int _v)
+        public bool CheckInWinkelmand(int ProductID)
         {
-            _pers.UpdateVoorraad(pid, _a, _v);
+            return _pers.CheckInWinkelmand(ProductID);
+        }
+
+        public void UpdateVoorraadMin(int pid, int _a, int _v)
+        {
+            _pers.UpdateVoorraadMin(pid, _a, _v);
+        }
+
+        public bool CheckWinkelmand()
+        {
+            return _pers.CheckWinkelmand();
         }
 
         public void UploadToWinkelmand(int kid, int pid, int aant)
@@ -27,14 +37,29 @@ namespace WebshopSneakersgip.Business
             _pers.UploadToWinkelmand(w);
         }
 
+        public void DeleteFromWinkelmand(int pid, int kid)
+        {
+            _pers.DeleteFromWinkelmand(pid, kid);
+        }
+
+        public void UpdateVoorraadPlus(int pid, int _a, int _v)
+        {
+            _pers.UpdateVoorraadPlus(pid, _a, _v);
+        }
+
         public List<ProductenInWinkelmand> LoadFromProductenInWinkelmand(int KlantID)
         {
             return _pers.LoadFromProductenInWinkelmand(KlantID);
         }
 
-        public List<Klant> LoadFromKlanten(int KlantID)
+        public string[] LoadFromKlanten(int KlantID)
         {
             return _pers.LoadKlantData(KlantID);
+        }
+
+        public double[] BerekenTotalen()
+        {
+            return _pers.BerekenTotalen();
         }
     }
 }

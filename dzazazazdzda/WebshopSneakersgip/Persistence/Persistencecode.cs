@@ -40,7 +40,27 @@ namespace WebshopSneakersgip.Persistence
             return lijst;
         }
 
-        public void UpdateVoorraad(int ProductID, int _aantal, int _voorraad)
+        public bool CheckInWinkelmand(int ProductID)
+        {
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+            string qry = "SELECT * FROM tblWinkelmand WHERE ProductID = " + ProductID;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+
+            if (dtr.HasRows)
+            {
+                conn.Close();
+                return false;
+            }
+            else
+            {
+                conn.Close();
+                return true;
+            }
+        }
+
+        public void UpdateVoorraadMin(int ProductID, int _aantal, int _voorraad)
         {
             MySqlConnection conn = new MySqlConnection(connstr);
             conn.Open();
@@ -49,6 +69,26 @@ namespace WebshopSneakersgip.Persistence
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public bool CheckWinkelmand()
+        {
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();          
+            string qry = "SELECT * FROM tblWinkelmand";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+
+            if (dtr.HasRows)
+            {
+                conn.Close();
+                return true;
+            }
+            else
+            {
+                conn.Close();
+                return false;
+            }           
         }
 
         public void UploadToWinkelmand(Winkelmand w)
@@ -61,17 +101,28 @@ namespace WebshopSneakersgip.Persistence
             conn.Close();
         }
 
-        public void DeleteFromWinkelmand(int ProductID)
+        public void DeleteFromWinkelmand(int ProductID, int KlantID)
         {
             MySqlConnection conn = new MySqlConnection(connstr);
             conn.Open();
-            string qry = "DELETE from tblwinkelmand where ProductID = " + ProductID;
+            string qry = "DELETE from tblwinkelmand where KlantID = " + KlantID + " AND ProductID = " + ProductID;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
         }
 
-        public List<Klant> LoadKlantData(int KlantID)
+        public void UpdateVoorraadPlus(int ProductID, int _aantal, int _voorraad)
+        {
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+            int newvoorraad = _voorraad + _aantal;
+            string qry = "UPDATE tblproducten SET Voorraad=" + newvoorraad + " WHERE ProductID=" + ProductID;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public string[] LoadKlantData(int KlantID)
         {
             //Aanmaken van een connectie en deze ook openen.
             MySqlConnection conn = new MySqlConnection(connstr);
@@ -82,20 +133,18 @@ namespace WebshopSneakersgip.Persistence
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
 
-            //Lijst aanmaken en doorsturen naar de Business laag.
-            List<Klant> lijst = new List<Klant>();
+            //array aanmaken en doorsturen naar de Business laag.           
+            string[] array = new string[4];
             while (dtr.Read())
             {
-                Klant klant = new Klant();         
-                klant.Klantnaam = dtr["Naam"].ToString();
-                klant.Adres = dtr["Adres"].ToString();
-                klant.Postcode = Convert.ToInt32(dtr["Postcode"]);
-                klant.Gemeente = dtr["Gemeente"].ToString();
-
-                lijst.Add(klant);
+                array[0] = dtr["Voornaam"].ToString() + " " + dtr["Naam"].ToString();
+                array[1] = dtr["Adres"].ToString();
+                array[2] = dtr["Postcode"].ToString();
+                array[3] = dtr["Gemeente"].ToString();
             }
+       
             conn.Close();
-            return lijst;
+            return array;
         }
 
         public List<ProductenInWinkelmand> LoadFromProductenInWinkelmand(int KlantID)
@@ -122,5 +171,26 @@ namespace WebshopSneakersgip.Persistence
             conn.Close();
             return Lijst;
         }
+
+        public double[] BerekenTotalen()
+        {
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+            string qry = "select sum(Aantal * Prijs) as totaalExclBTW, 0.21 * sum(Aantal * Prijs) as BTW, sum(Aantal * Prijs) + 0.21 * sum(Aantal * Prijs) as totaalInclBTW" + "" +
+                         "from tblwinkelmand inner join tblproducten on tblWinkelmand.ProductID = tblProducten.ProductID";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            double[] array = new double[3];
+            while (dtr.Read())
+            {
+                Totalen tot = new Totalen();
+                array[0] = Convert.ToDouble(dtr["totaalExclBTW"]);
+                array[1] = Convert.ToDouble(dtr["BTW"]);
+                array[2] = Convert.ToDouble(dtr["totaalInclBTW"]);             
+            }
+            conn.Close();
+            return array;
+        }
+
     }
 }

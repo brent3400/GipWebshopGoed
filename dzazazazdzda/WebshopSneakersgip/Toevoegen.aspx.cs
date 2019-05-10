@@ -23,9 +23,29 @@ namespace WebshopSneakersgip
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            _cont.UpdateVoorraad(Convert.ToInt32(Session["ProductID"]), Convert.ToInt32(txtAantal.Text), Convert.ToInt32(Session["Voorraad"]));
-            _cont.UploadToWinkelmand(Convert.ToInt32(Session["KlantID"]), Convert.ToInt32(Session["ProductID"]), Convert.ToInt32(txtAantal.Text));
-            Response.Redirect("Winkelmandje.aspx");
+            if (_cont.CheckInWinkelmand(Convert.ToInt32(Session["ProductID"])) == true)
+            {
+                lblText.Visible = true; txtAantal.Visible = true; btnOk.Visible = true;
+                lblFouttext.Visible = false; btnCatalogus.Visible = false;
+
+                Session["NewVoorraad"] = Convert.ToInt32(Session["Voorraad"]) - Convert.ToInt32(txtAantal.Text);
+                _cont.UpdateVoorraadMin(Convert.ToInt32(Session["ProductID"]), Convert.ToInt32(txtAantal.Text), Convert.ToInt32(Session["Voorraad"]));
+
+                _cont.UploadToWinkelmand(Convert.ToInt32(Session["KlantID"]), Convert.ToInt32(Session["ProductID"]), Convert.ToInt32(txtAantal.Text));
+
+                Response.Redirect("Winkelmandje.aspx");
+            }
+            else
+            {
+                lblText.Visible = false; txtAantal.Visible = false; btnOk.Visible = false;
+                lblFouttext.Visible = true; btnCatalogus.Visible = true;
+            }
+           
+        }
+
+        protected void btnCatalogus_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
         }
     }
 }

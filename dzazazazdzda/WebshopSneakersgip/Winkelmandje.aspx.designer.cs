@@ -49,6 +49,15 @@ namespace WebshopSneakersgip {
         protected global::System.Web.UI.WebControls.Label lblAdres;
         
         /// <summary>
+        /// lblPcGe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPcGe;
+        
+        /// <summary>
         /// lblDatum control.
         /// </summary>
         /// <remarks>
@@ -65,5 +74,50 @@ namespace WebshopSneakersgip {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvWinkelmand;
+        
+        /// <summary>
+        /// lblExclBTW control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExclBTW;
+        
+        /// <summary>
+        /// lblBTW control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBTW;
+        
+        /// <summary>
+        /// lblInclBTW control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInclBTW;
+        
+        /// <summary>
+        /// btnBestellen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBestellen;
+        
+        /// <summary>
+        /// btnCatalogus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCatalogus;
     }
 }
