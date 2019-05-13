@@ -172,24 +172,43 @@ namespace WebshopSneakersgip.Persistence
             return Lijst;
         }
 
-        public double[] BerekenTotalen()
+        public Totalen BerekenTotalen()
         {
             MySqlConnection conn = new MySqlConnection(connstr);
             conn.Open();
-            string qry = "select sum(Aantal * Prijs) as totaalExclBTW, 0.21 * sum(Aantal * Prijs) as BTW, sum(Aantal * Prijs) + 0.21 * sum(Aantal * Prijs) as totaalInclBTW" + "" +
-                         "from tblwinkelmand inner join tblproducten on tblWinkelmand.ProductID = tblProducten.ProductID";
+            string qry = "select sum(Aantal * Prijs) as totaalExclBTW, 0.21 * sum(Aantal * Prijs) as BTW, sum(Aantal * Prijs) + 0.21 * sum(Aantal * Prijs) as totaalInclBTW " +
+                         "from tblwinkelmand inner join tblProducten on tblWinkelmand.ProductID = tblProducten.ProductID";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
-            double[] array = new double[3];
+            Totalen tot = new Totalen();
             while (dtr.Read())
-            {
-                Totalen tot = new Totalen();
-                array[0] = Convert.ToDouble(dtr["totaalExclBTW"]);
-                array[1] = Convert.ToDouble(dtr["BTW"]);
-                array[2] = Convert.ToDouble(dtr["totaalInclBTW"]);             
+            {          
+                tot.TotaalExclBTW = Convert.ToDouble(dtr["totaalExclBTW"]);
+                tot.BTW = Convert.ToDouble(dtr["BTW"]);
+                tot.TotaalInclBTW = Convert.ToDouble(dtr["totaalInclBTW"]);             
             }
             conn.Close();
-            return array;
+            return tot;
+        }
+
+        public void UploadOrder(string datum, int KlantID)
+        {
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+            string qry = "INSERT INTO tblOrder VALUES (Orderdatum, KlantID) SET ('" + datum + "', " + KlantID + ")";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void UploadOrderLijn(string datum, int KlantID)
+        {
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+            string qry = "INSERT INTO tblOrder VALUES (Orderdatum, KlantID) SET ('" + datum + "', " + KlantID + ")";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
     }

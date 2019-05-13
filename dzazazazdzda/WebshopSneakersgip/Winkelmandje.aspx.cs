@@ -26,9 +26,9 @@ namespace WebshopSneakersgip
                 gvWinkelmand.DataSource = _cont.LoadFromProductenInWinkelmand(Convert.ToInt32(Session["KlantID"]));
                 gvWinkelmand.DataBind();
 
-                lblExclBTW.Text = Convert.ToString(_cont.BerekenTotalen()[0]);
-                lblBTW.Text = Convert.ToString(_cont.BerekenTotalen()[1]);
-                lblInclBTW.Text = Convert.ToString(_cont.BerekenTotalen()[2]);
+                lblExclBTW.Text = "€ " + Convert.ToString(_cont.BerekenTotalen().TotaalExclBTW);
+                lblBTW.Text = "€ " + Convert.ToString(_cont.BerekenTotalen().BTW);
+                lblInclBTW.Text = "€ " + Convert.ToString(_cont.BerekenTotalen().TotaalInclBTW);
             }
             else
             {
@@ -57,6 +57,11 @@ namespace WebshopSneakersgip
         protected void btnCatalogus_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
+        }
+
+        protected void btnBestellen_Click(object sender, EventArgs e)
+        {
+            _cont.UploadOrder(lblDatum.Text, Convert.ToInt32(Session["KlantID"]));
         }
     }
 }

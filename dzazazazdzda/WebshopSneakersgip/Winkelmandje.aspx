@@ -21,6 +21,19 @@
         .auto-style5 {
             text-align: center;
         }
+        .auto-style6 {
+            text-align: right;
+            height: 23px;
+        }
+        .auto-style7 {
+            text-align: right;
+            height: 23px;
+            width: 648px;
+        }
+        .auto-style8 {
+            text-align: right;
+            width: 648px;
+        }
     </style>
 </head>
 <body>
@@ -84,19 +97,19 @@
             <br />
             <table class="auto-style3">
                 <tr>
-                    <td class="auto-style4">Totaal excl. BTW:</td>
-                    <td class="auto-style4">
+                    <td class="auto-style7">Totaal excl. BTW:</td>
+                    <td class="auto-style6">
                         <asp:Label ID="lblExclBTW" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">BTW:</td>
+                    <td class="auto-style8">BTW:</td>
                     <td class="auto-style4">
                         <asp:Label ID="lblBTW" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">Totaal incl. BTW:</td>
+                    <td class="auto-style8">Totaal incl. BTW:</td>
                     <td class="auto-style4">
                         <asp:Label ID="lblInclBTW" runat="server"></asp:Label>
                     </td>
@@ -106,7 +119,7 @@
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style5">
-                        <asp:Button ID="btnBestellen" runat="server" Text="Bestellen..." />
+                        <asp:Button ID="btnBestellen" runat="server" Text="Bestellen..." OnClick="btnBestellen_Click" />
                     </td>
                     <td class="auto-style5">
                         <asp:Button ID="btnCatalogus" runat="server" OnClick="btnCatalogus_Click" Text="Terug naar catalogus..." />

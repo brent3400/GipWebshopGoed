@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bestelbevestiging.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Files\btnDelete.jpg" />
     <Content Include="Files\Nike98.jpg" />
@@ -81,6 +82,13 @@
     <Content Include="Winkelmandje.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bestelbevestiging.aspx.cs">
+      <DependentUpon>Bestelbevestiging.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bestelbevestiging.aspx.designer.cs">
+      <DependentUpon>Bestelbevestiging.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Business\Controller.cs" />
     <Compile Include="Business\Klant.cs" />
     <Compile Include="Business\Product.cs" />
