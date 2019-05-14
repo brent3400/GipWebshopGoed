@@ -62,7 +62,7 @@ namespace WebshopSneakersgip.Business
             return _pers.BerekenTotalen();
         }
 
-        public void UploadOrder(string datum, int KlantID)
+        public void UploadOrder(DateTime datum, int KlantID)
         {
             _pers.UploadOrder(datum, KlantID);
         }

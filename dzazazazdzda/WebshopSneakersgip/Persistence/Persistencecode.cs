@@ -191,11 +191,12 @@ namespace WebshopSneakersgip.Persistence
             return tot;
         }
 
-        public void UploadOrder(string datum, int KlantID)
+        public void UploadOrder(DateTime datum, int KlantID)
         {
             MySqlConnection conn = new MySqlConnection(connstr);
             conn.Open();
-            string qry = "INSERT INTO tblOrder VALUES (Orderdatum, KlantID) SET ('" + datum + "', " + KlantID + ")";
+            string juisteDatum = datum.ToString("yyyy-MM-dd");
+            string qry = "INSERT INTO tblOrder (Orderdatum, KlantID) VALUES ('" + juisteDatum + "', " + KlantID + ")";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();

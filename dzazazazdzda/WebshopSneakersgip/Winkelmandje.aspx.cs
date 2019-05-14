@@ -61,7 +61,7 @@ namespace WebshopSneakersgip
 
         protected void btnBestellen_Click(object sender, EventArgs e)
         {
-            _cont.UploadOrder(lblDatum.Text, Convert.ToInt32(Session["KlantID"]));
+            _cont.UploadOrder(DateTime.Now, Convert.ToInt32(Session["KlantID"]));
         }
     }
 }

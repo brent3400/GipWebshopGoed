@@ -77,6 +77,7 @@
     <Content Include="Files\NikeMax2.jpg" />
     <Content Include="Files\NikeZoom.jpg" />
     <Content Include="MandjeLeeg.aspx" />
+    <Content Include="Opmaak.css" />
     <Content Include="Toevoegen.aspx" />
     <Content Include="Web.config" />
     <Content Include="Winkelmandje.aspx" />

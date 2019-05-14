@@ -5,20 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Catalogus</title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 800px;
-        }
-    </style>
+    <link href="Opmaak.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <h2>Online Sneakershop - Catalogus</h2>
-            <table class="auto-style1">
+            <table>
                 <tr>
                     <td>
-                        <asp:GridView ID="gvCatalogus" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvCatalogus_SelectedIndexChanged">
+                        <asp:GridView class="DefaultGridView" ID="gvCatalogus" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvCatalogus_SelectedIndexChanged">
                             <Columns>
                                 <asp:BoundField DataField="ProductID" HeaderText="ProductID">
                                 <ItemStyle Width="50px" />
